@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { 
   ShoppingBag, 
   User as UserIcon, 
-  Plus, f
+  Plus, 
   LogOut, 
   LayoutDashboard, 
   Search,
