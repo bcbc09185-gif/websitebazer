@@ -115,7 +115,7 @@ export default function AIAssistant() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/ai-assistant', {
+      const response = await fetch((import.meta.env.VITE_API_URL || '') + '/api/ai-assistant', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
