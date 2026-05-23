@@ -123,7 +123,7 @@ export default function App() {
 
   const fetchProducts = useCallback(async () => {
     try {
-      const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/products');
+      const res = await fetch('https://websitebazer.onrender.com' + '/api/products');
       const data = await res.json().catch(() => ({ error: "Invalid JSON response from server" }));
       if (!res.ok) {
         if (res.status === 503) {
@@ -163,7 +163,7 @@ export default function App() {
         setCurrentUser(user);
         if (user) {
           try {
-            const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/users/sync', {
+            const res = await fetch('https://websitebazer.onrender.com' + '/api/users/sync', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
@@ -1379,8 +1379,8 @@ function AdminPanel({ onProductAdded }: { onProductAdded?: () => void }) {
   const fetchConfigs = useCallback(async () => {
     try {
       const [packRes, payRes] = await Promise.all([
-        fetch((import.meta.env.VITE_API_URL || '') + '/api/configs/guide-packs'),
-        fetch((import.meta.env.VITE_API_URL || '') + '/api/configs/payments')
+        fetch('https://websitebazer.onrender.com' + '/api/configs/guide-packs'),
+        fetch('https://websitebazer.onrender.com' + '/api/configs/payments')
       ]);
       if (packRes.ok) {
         const packs = await packRes.json();
@@ -2116,7 +2116,7 @@ function AddProductModal({ onClose, onAdded }: { onClose: () => void, onAdded: (
   const [dbStatus, setDbStatus] = useState<'checking' | 'connected' | 'disconnected'>('checking');
 
   useEffect(() => {
-    fetch((import.meta.env.VITE_API_URL || '') + '/api/health')
+    fetch('https://websitebazer.onrender.com' + '/api/health')
       .then(res => res.json())
       .then(data => {
         setDbStatus(data.database === 'connected' ? 'connected' : 'disconnected');
@@ -2170,7 +2170,7 @@ function AddProductModal({ onClose, onAdded }: { onClose: () => void, onAdded: (
         }
       });
 
-      const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/products', { method: 'POST', body: data });
+      const res = await fetch('https://websitebazer.onrender.com' + '/api/products', { method: 'POST', body: data });
       const result = await res.json();
       
       if (!res.ok) {
@@ -3233,3 +3233,4 @@ function ProductDetailModal({ product, onClose, onBuy, isUnlocked }: { product: 
     </motion.div>
   );
 }
+
